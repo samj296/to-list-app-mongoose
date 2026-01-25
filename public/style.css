@@ -1,0 +1,11 @@
+body{
+    background-color: #98AFC7;
+}
+#todoInput{
+    background-color: #1974D2;
+    color: black;
+}
+
+#commentInput{
+    background-color: #778899;
+}
