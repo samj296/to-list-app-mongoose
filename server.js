@@ -6,11 +6,14 @@ const app = express();
 
 app.use(express.json());
 
+const todoRouter = require("./routes/todo")
+
 // connecting to the mongoDB(Database)
 connectDB();
 
+// Routes
 
-
+app.use("/", todoRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>{
