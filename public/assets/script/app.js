@@ -1,4 +1,11 @@
-    // <!-- This is the example of carousel(bootstrap)  -->   
+    import {api} from "./fetcher.js"
+    /*
+    This is the example of carousel(bootstrap) 
+    I tried this and now copied here so that 
+    I can inject it whith js when Carousal view is selected
+    */
+
+    
     // <div id = "carouselTodo" class = "carousel slide">
     //                 <div class = "carousel-inner">
     //                     <div class = "carousel-item active text-center">
@@ -18,3 +25,14 @@
     //                 </button>
 
     // </div>
+
+    const input = document.getElementById("todoInput");
+    const comment = document.getElementById("commentInput");
+    const formEl = document.getElementById("create-form")
+
+    formEl.addEventListener("submit", () => {
+        //Function for adding todo
+
+    });
+
+   

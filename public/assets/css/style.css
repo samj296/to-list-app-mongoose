@@ -1,0 +1,32 @@
+body{
+    background-color: #3F000F;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    border: solid black 5px;
+    background-color: #2F0909;
+}
+
+#inputSection{
+    border: 2px solid black;
+}
+
+#refresh{
+    float: right;
+}
+
+#todoInput, #todoInput::placeholder,#commentInput, #commentInput::placeholder{
+    background-color: #2F0909;
+    color: white;
+    border: black 2px;
+}
+
+#view-switch{
+    float: right;
+}
+
+#commentInput{
+    background-color: #2F0909;
+}

@@ -6,28 +6,33 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <title>TO-DO-APP</title>
-        <linK rel = "stylesheet" href = "style.css">
+        <linK rel = "stylesheet" href = "./assets/css/style.css">
     </head>
     <body>  
            <section id = "inputSection" class = "container-fluid row">
                 <header>
                     <h1>To-Do-App</h1>
                 </header>
-                <form id = "createForm" class = "row">
+                <form id = "create-form" class = "row">
                     <div class = "col-8">
                         <input id = "todoInput" class = "form-control w-75" type = "text" placeholder="Add a new to-do...">
                         
                     </div>
                     <div class = "col-2">
-                        <button class = "btn btn-dark" type = "button">Add</button>
+                        <button class = "btn btn-dark" type = "submit">Add</button>
                     </div>
                 </form>
                 <div class = "row">
                     <div class = "col-8">
                         <input id = "commentInput" class = "form-control w-75" type = "text" placeholder="Add Comment (optional)">
+                        <button id = "refresh" class = "btn btn-secondary" type = "button">Refresh</button>
                     </div>
                     
+                    
                 </div>
+           </section>
+           <section id = "todo-list">
+                <button id = "view-switch" class = "btn btn-secondary">List/Carousel</button>
            </section>
 
           
@@ -35,5 +40,5 @@
 
            
     </body>
-    <script src = "./style.css"></script>
+    <script type = "module" src = "./assets/script/app.js"></script>
 </html>
