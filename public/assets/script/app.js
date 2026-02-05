@@ -36,7 +36,3 @@ function switchView(){
     viewBtn.textContent = savedView;
 };
 
-async function loadTodo(){
-    const todos = await api("/api/todos",{method: "GET"})
-    // Need to pass the toDoListSection before calling the function for rendering the todo
-}

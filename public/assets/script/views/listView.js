@@ -34,5 +34,7 @@ function listView(todos, EL){
 
         });
 
-    }
-}
+    };
+};
+
+export {listView}
