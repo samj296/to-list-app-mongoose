@@ -1,3 +1,5 @@
+import {getTodos, createTodo, updateTodo, deleteTodo} from "../api.js";
+
 function listView(todos, EL){
     EL.innerHTML = "";
     for(const todo of todos){
@@ -27,11 +29,13 @@ function listView(todos, EL){
         EL.appendChild(li);
         
         editBtn.addEventListener("click", () => {
-
+            const input = document.getElementById("todoInput")
+            const comment = document.getElementById("comment-input")
+            updateTodo(todo._id,)
         });
 
         deleteBtn.addEventListener("click", () => {
-
+            deleteTodo(todo._id);
         });
 
     };
