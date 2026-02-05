@@ -15,7 +15,11 @@ function listView(todos, EL){
         };
         
         
-
+        const checkBox = document.createElement("input"); 
+        checkBox.type = "checkbox";
+        checkBox.classList.add("status-checkbox")
+        
+        
         const editBtn = document.createElement("button");
         const deleteBtn = document.createElement("button");
 
@@ -24,14 +28,26 @@ function listView(todos, EL){
         editBtn.textContent = "Edit";
         deleteBtn.textContent = "Delete";
         
+        li.appendChild(checkBox);
         li.appendChild(editBtn);
         li.appendChild(deleteBtn);
         EL.appendChild(li);
         
         editBtn.addEventListener("click", () => {
-            const input = document.getElementById("todoInput")
-            const comment = document.getElementById("comment-input")
-            updateTodo(todo._id,)
+            const input = document.getElementById("todoInput");
+            const comment = document.getElementById("comment-input");
+            const update={};
+
+            if (input.value.trim() !== "" ){
+                update.title = input.value.trim();
+            };
+            if (comment.value.trim() !== "" ){
+                update.comment = {body: comment.value.trim()};
+            };
+
+            update.status = checkBox.checked ? "completed" : "pending";
+
+            updateTodo(todo._id, update);
         });
 
         deleteBtn.addEventListener("click", () => {

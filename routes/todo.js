@@ -31,9 +31,23 @@ router.put("/:id", async (req, res) => {
     try{
         const {id} = req.params
         const update = {}
-        
-        if (typeof req.body.title === "string") update.title = req.body.title;
-        if ( validStatus.includes(req.body.status)) update.status = req.body.status;
+        //update if title is provided
+        if (typeof req.body.title === "string" && req.body.title.trim()!== "" ) {
+            update.title = req.body.title
+        };
+        //update is status valid
+        if ( validStatus.includes(req.body.status)) {
+            update.status = req.body.status
+        };
+
+        //update if comment is provided
+        if(req.body.comment && 
+            typeof req.body.comment.body === "string" 
+            && req.body.comment.body.trim() !== "" ){
+                update.comment = {body: req.body.comment.body.trim(),
+                createdAt: new Date()
+                }
+        }
         
         const todo = await ToDo.findByIdAndUpdate(id, update, {
             new: true,
