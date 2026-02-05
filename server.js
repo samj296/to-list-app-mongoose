@@ -13,7 +13,7 @@ connectDB();
 
 // Routes
 
-app.use("/", todoRouter);
+app.use("/api/todos", todoRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>{

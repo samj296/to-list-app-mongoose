@@ -14,7 +14,11 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
     try{
         const{title, comment} = req.body;
-        const todo = await ToDo.create({title, status: "pending", comment});
+        const newTodo = {title, status: "pending"} 
+        if(typeof comment === "string" && comment.trim() !== ""){
+            newTodo.comment = {body: comment.trim()};
+        }
+        const todo = await ToDo.create(newTodo);
         res.status(201).json(todo);
     }catch(err){
         res.status(400).json({ error: "Failed to create todo" });
