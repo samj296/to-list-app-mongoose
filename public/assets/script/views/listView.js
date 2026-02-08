@@ -7,10 +7,13 @@ function listView(todos, todoListSection, reload){
     for(const todo of todos){
         const li = document.createElement("li");
         const title = document.createElement("p");
-        title.innerText = todo.title;
+        title.textContent = todo.title;
+        
+        title.classList.add(todo.status)
+
         li.appendChild(title);
         if(todo.comment && typeof(todo.comment.body) === "string" && todo.comment.body.trim() !== ""){
-            const comment = todo.comment.body;
+            const comment = "comment:- " + todo.comment.body;
             const commentP = document.createElement("p");
             commentP.innerText = comment;
             li.appendChild(commentP);
@@ -19,7 +22,8 @@ function listView(todos, todoListSection, reload){
         
         const checkBox = document.createElement("input"); 
         checkBox.type = "checkbox";
-        checkBox.classList.add("status-checkbox")
+        checkBox.classList.add("status-checkbox");
+        checkBox.checked = todo.status === "completed";
         
         
         const editBtn = document.createElement("button");
@@ -34,6 +38,16 @@ function listView(todos, todoListSection, reload){
         li.appendChild(editBtn);
         li.appendChild(deleteBtn);
         EL.appendChild(li);
+
+
+        checkBox.addEventListener("change", async() =>{
+            const update = {
+                status: checkBox.checked ? "completed" : "pending"
+            };
+
+            await updateTodo(todo._id, update)
+            reload();
+        });
 
         editBtn.addEventListener("click", () => {
             const input = document.getElementById("todoInput");

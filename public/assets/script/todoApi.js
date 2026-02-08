@@ -14,7 +14,7 @@ function createTodo(todo){
 
 function updateTodo(id, updates){
     return api(`${apiURL}/${id}`, {
-        method: "PATCH",
+        method: "PUT",
         body: JSON.stringify(updates)
     });
 };

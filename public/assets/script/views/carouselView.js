@@ -1,10 +1,10 @@
     import {getTodos, createTodo, updateTodo, deleteTodo} from "../todoApi.js";
 
-function carouselView(todos, EL, reload){
+ function carouselView(todos, EL, reload){
     //EL is the <ul></ul>
     EL.innerHTML = "";
     const div = document.createElement("div");
-    div.id = "carousalTodo";
+    div.id = "carouselTodo";
     div.classList.add("carousel", "slide");
         //  Now I will loop inside the list to create carousel-item inside the div class     
 
@@ -25,14 +25,19 @@ function carouselView(todos, EL, reload){
                 const checkBox = document.createElement("input"); 
                 checkBox.type = "checkbox";
                 checkBox.classList.add("status-checkbox")
+                checkBox.checked = todo.status === "completed";
+
                 const editBtn = document.createElement("button");
                 const deleteBtn = document.createElement("button");
 
                 title.classList.add("d-block", "w-100")
                 title.textContent = todo.title;
+
+                title.classList.add(todo.status)
+                
                 divItem.appendChild(title);
                 if(todo.comment && typeof(todo.comment.body) === "string" && todo.comment.body.trim() !== ""){
-                    const comment = todo.comment.body;
+                    const comment = "comment:- " + todo.comment.body;
                     const commentP = document.createElement("p");
                     commentP.innerText = comment;
                     divItem.appendChild(commentP);
@@ -55,8 +60,16 @@ function carouselView(todos, EL, reload){
             toDoCount++
 
              //here I will add the event Listener for all these buttons and the checkbox
-             
-            editBtn.addEventListener("click", () => {
+            
+        checkBox.addEventListener("change", async() =>{
+            const update = {
+                status: checkBox.checked ? "completed" : "pending"
+            };
+            await updateTodo(todo._id, update)
+            reload();
+        });
+
+            editBtn.addEventListener("click", async () => {
                 const input = document.getElementById("todoInput");
                 const comment = document.getElementById("comment-input");
                 const update = {};
@@ -70,12 +83,12 @@ function carouselView(todos, EL, reload){
 
                 update.status = checkBox.checked ? "completed" : "pending";
 
-                updateTodo(todo._id, update);
+                await updateTodo(todo._id, update);
                 reload()
             });
 
-            deleteBtn.addEventListener("click", () => {
-                deleteTodo(todo._id);
+            deleteBtn.addEventListener("click", async () => {
+                await deleteTodo(todo._id);
                 reload()
             });
         };
