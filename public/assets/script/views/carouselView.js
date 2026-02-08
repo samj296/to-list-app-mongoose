@@ -1,11 +1,11 @@
     import {getTodos, createTodo, updateTodo, deleteTodo} from "../todoApi.js";
 
-function carouselView(todos, EL){
+function carouselView(todos, EL, reload){
     //EL is the <ul></ul>
     EL.innerHTML = "";
     const div = document.createElement("div");
     div.id = "carousalTodo";
-    div.classList.add("carousel slide");
+    div.classList.add("carousel", "slide");
         //  Now I will loop inside the list to create carousel-item inside the div class     
 
     
@@ -71,10 +71,12 @@ function carouselView(todos, EL){
                 update.status = checkBox.checked ? "completed" : "pending";
 
                 updateTodo(todo._id, update);
+                reload()
             });
 
             deleteBtn.addEventListener("click", () => {
                 deleteTodo(todo._id);
+                reload()
             });
         };
 

@@ -8,8 +8,8 @@ const commentInput = document.getElementById("comment-input"); // comment input 
 const viewBtn = document.createElement("button"); // this button is for changing the view of the list
 const toDoListSection = document.getElementById("todo-section"); // this is where the view button and the list will go
 const ul = document.getElementById("todo-list");
-
-toDoListSection.appendChild(viewBtn);
+const btnSection = document.getElementById("btn-section")
+btnSection.appendChild(viewBtn);
 let savedView = localStorage.getItem("view");
 const views = ["List", "Carousel"];
 viewBtn.classList.add("btn", "btn-dark", "view");
@@ -43,9 +43,9 @@ function switchView(){
 async function loadTodos(){
     const todos = await getTodos();
     if(savedView === views[0]){ //ListView
-        listView(todos, ul);
+        listView(todos, toDoListSection,loadTodos);
     }else {
-        carouselView(todos, toDoListSection);
+        carouselView(todos, toDoListSection,loadTodos);
     }
 }
 

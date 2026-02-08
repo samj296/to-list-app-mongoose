@@ -1,7 +1,9 @@
 import {getTodos, createTodo, updateTodo, deleteTodo} from "../todoApi.js";
 
-function listView(todos, EL){
-    EL.innerHTML = "";
+function listView(todos, todoListSection, reload){
+    const EL = document.createElement("ul")
+    EL.id = "todo-list";
+    todoListSection.innerHTML = "";
     for(const todo of todos){
         const li = document.createElement("li");
         const title = document.createElement("p");
@@ -32,7 +34,7 @@ function listView(todos, EL){
         li.appendChild(editBtn);
         li.appendChild(deleteBtn);
         EL.appendChild(li);
-        
+
         editBtn.addEventListener("click", () => {
             const input = document.getElementById("todoInput");
             const comment = document.getElementById("comment-input");
@@ -48,13 +50,16 @@ function listView(todos, EL){
             update.status = checkBox.checked ? "completed" : "pending";
 
             updateTodo(todo._id, update);
+            reload()
         });
 
         deleteBtn.addEventListener("click", () => {
             deleteTodo(todo._id);
+            reload()
         });
 
     };
+    todoListSection.appendChild(EL);
 };
 
 export {listView}
