@@ -1,4 +1,4 @@
-    import {getTodos, createTodo, updateTodo, deleteTodo} from "../api.js";
+    import {getTodos, createTodo, updateTodo, deleteTodo} from "../todoApi.js";
 
 function carouselView(todos, EL){
     //EL is the <ul></ul>
